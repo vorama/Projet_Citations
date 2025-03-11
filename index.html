@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citations Motivantes</title>
+    <script>
+        // Fonction pour obtenir la citation du backend
+        function getQuote() {
+            fetch('/quote')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('quote').innerText = `"${data.quote}"`;
+                    document.getElementById('author').innerText = `- ${data.author}`;
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+        }
+
+        // Charger une citation dès le début
+        window.onload = getQuote;
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>Citation Motivante</h1>
+        <p id="quote" style="font-size: 24px; font-style: italic;"></p>
+        <p id="author" style="font-size: 20px; color: gray;"></p>
+        <button onclick="getQuote()">Obtenir une autre citation</button>
+    </div>
+</body>
+</html>
+
