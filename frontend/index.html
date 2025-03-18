@@ -15,6 +15,7 @@
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
+                    document.getElementById('quote').innerText = "Erreur lors du chargement de la citation.";
                 });
         }
 

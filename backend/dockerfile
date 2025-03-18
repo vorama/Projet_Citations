@@ -1,0 +1,15 @@
+# Utiliser l'image Python
+FROM python:3.9-alpine
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier le fichier requirements.txt et installer les dépendances
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copier le reste du code source
+COPY . .
+
+# Lancer l'application
+CMD ["python", "citations.py"]
