@@ -1,10 +1,10 @@
-# Utiliser l'image Python
+# Image leger Python
 FROM python:3.9-alpine
 
-# Définir le répertoire de travail
+# Définir un répertoire/dossiers de travail
 WORKDIR /app
 
-# Copier le fichier requirements.txt et installer les dépendances
+# Copier le fichier requirements.txt et installer les bibliothèques tout en supprimant les caques des paquets téléchargée
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 

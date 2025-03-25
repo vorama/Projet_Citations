@@ -1,2 +1,5 @@
+#micro framework pour le développement d'applications web en python
 Flask==2.0.1
+
+#bibiliothèque phyton
 Werkzeug==2.0.3

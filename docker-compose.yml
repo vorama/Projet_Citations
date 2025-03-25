@@ -2,27 +2,40 @@
 services:
   backend:
     build: ./backend
+    #consutri une image en prenant le Dockerfile du dossier bakcend
     container_name: backend
+    #nom du conteneur
     working_dir: /app
+    # ça crée un répértoire dans mon conteneur et c'est la que tout le reste va se passer/enregistrer ou autre
     networks:
       - app-network
+      #on determine le résau sur lequel le conteneur tourne
     ports:
       - "5000:5000"
-    restart: always  # Permet de redémarrer en cas d'erreur
+      #mappage entre le port hote et le conteneur
+    restart: always  
+    #permet de redemarrer automatiquement si le conteneur plante ou se ferme
 
   frontend:
     image: nginx:alpine
+    #utilisation de l'image Nginx en version alégée (.alpine)
     container_name: frontend
+    #nom du conteneur
     depends_on:
-      - backend  # Attend que le backend soit prêt
+      - backend
+      # On crée un sorte de dépendance entre le front et le back (ça va attendre que le back démarre)
     volumes:
-      - ./frontend:/usr/share/nginx/html  # Assure-toi que le fichier index.html est monté
-      - ./nginx.conf:/etc/nginx/nginx.conf  # Utilise le fichier de config personnalisé
+      #un volume permet de stocker dans le long terme
+      - ./frontend:/usr/share/nginx/html  
+      - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
       - app-network
+      #on determine le résau sur lequel le conteneur tourne
     ports:
       - "80:80"
-    restart: always  # Permet de redémarrer en cas d'erreur
+      #mappage entre le port hote et le conteneur
+    restart: always
+    #permet de redemarrer automatiquement si le conteneur plante ou se ferme
 
 networks:
   app-network:
